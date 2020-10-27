@@ -1,0 +1,228 @@
+---
+title: "The Not So Great Equalizer; Higher Education’s Role in Social Reproduction"
+author: "Chris Gonzales"
+date: "5/21/2019"
+header-includes:
+  - \usepackage{setspace}
+  - \doublespacing
+output: pdf_document
+---
+##Abstract
+Unfortunately, parents’ income plays an important role in where a person ends up in the income distribution upon adulthood. People who receive higher education typically rank higher on the economic totem pole even if they were born into a low-income family. However, higher education is distributed unequally throughout the population. Models I created using quantitative research on college data confirms that young adults with parents who earn in the top quintile are much more likely to get a college education than young adults from the bottom quintile. By confirming higher education’s role in social reproduction, my project paves the way for future research into potential remedies. 
+
+##Introduction
+
+Social reproduction is the phenomenon where people with parents from the upper echelons of society find are likely to be rich in adulthood; meanwhile, people born into poverty are likely to never escape. The concept of equal opportunity- where everyone is given the same opportunity to succeed is well recieved. Social reproduction subverts everything equal opportunity stands for. Historically, higher education has been seen as a means to help raise equality of opportunity. Smart students, regardless of economic background, are supposed to be able to navigate their way to success through education. However, increasing prices and the standards for admittance are making it harder for students from low-income backgrounds to participate in college.   
+
+Higher education and income later in life have become intimately tied. This alone is not necessarily a problem. Higher education helps people learn ideas and skills that are valued inside the work force. Thus, people with a college education gain advantages on their peers without a college education in the labor market which is okay. However, higher education is not being consumed equally across people from different socioeconomic backgrounds. People from the top income quintile are significantly more likely to attend college than those from the bottom income quintile. Thus, higher education is directly contributing to the reproduction of economic status. This paper exhibits the extent to which college is unequally accessed by persons from the top income quintile. Furthermore, I display the strength of the association between higher education and income rank later in life. Combined this serves to identify the extent to which college continues the cycle of social reproduction. Additionally, I investigate potential causes for the aforementioned phenomenon. 
+
+I have a personal connection to this project. My parents earn inside the top quintile of income and I attend an expensive elite college. I will be graduating with majors in computer science and sociology next year and I will have a solid opportunity to complete the cycle of social reproduction and earn inside the top quintile in adulthood. However, I am acutely aware of the opportunities and advantages that I have been given and the challenges I have not had to face. My father was born into a low-income household before he was adopted into a wealthy family his freshman year of high school. This change helped my father receive a higher education from the University of Texas and ultimately land a high paying job. His brother and sister, who were not adopted, still live in poor communities. I have watched their children, my first cousins, traverse the education process. One of my cousins, I’ll call him Tommy, slept on a mattress on the floor for large portions of his childhood. He is bright and worked hard in school. My dad would sometimes buy food for Tommy’s family to help them get through the week. Somehow, Tommy still managed to attend community college. However, his success is the exception- Tommy’s younger brother and my aunt’s son are not attending college. My cousins were not given the same opportunities to receive higher education as I was. While my mom was driving me to extracurricular activities and buying me SAT prep materials, their parent/parents were juggling how to afford rent and food. Higher education opened its doors for me in a way that it didn’t for them. Although it is too much to ask for college to be used as a mechanism to override all the adversities they faced, I believe colleges could do a better job compensating them for the difficulties they faced and acknowledging all the opportunities I was given to succeed. This pilot project answers the question- “how much is higher education contributing to social reproduction?”. I begin to hypothesize potential aids to help college raise equality of opportunity as opposed to hamper it. 
+  
+##Literature Review
+Horace Mann described education as “the great equalizer… the balance wheel of social machinery”. For some this people this is true; even people from the depths of the socioeconomic ladder who receive education from elite schools are likely to end up in the top 2 quintiles of income as adults (Chetty 2017). Education is the primary mechanism for young adults from a lower socioeconomic background to move into an occupation of higher status than their parents (Nelson et al 2009). But the American Dream of picking a person being able to pick themselves up by the bootstraps and reach financial success through a combination of hard work and skill, regardless of background, seems to be nothing more than a dream for most Americans. Today, college is becoming increasingly difficult to attend for students of low socioeconomic background at a time when college is extremely impactful on financial outcomes. Meanwhile elite universities such as Middlebury, the student body is dominated by students from the top quintile of family income. At Middlebury nearly 75% of students have parents who earn inside the top quintile (Chetty 2017). This leaves few spots open for low-income students.   
+
+Despite the American Dream’s emphasis on mobility, modern literature agrees that parents’ income plays a huge role in expected outcomes for the child. How deep does the effect of parent’s resources run on children’s outcome? What are the chances that a kid can truly escape poverty and rise the socioeconomic ladder? A kid from the bottom quintile has a 6% chance of making it into the top quintile of earners as an adult. In contrast his/her chances of remaining in the bottom quintile of earners as an adult is 42% (Reeves & Howard 2013). Actualization of the American Dream is rare; instead most people born into poor families seem destined to remain poor as adults. While there is a myriad of causes behind the social reproduction of poor individuals (many of which will be discussed briefly later),  this paper will focus on one that doesn’t directly involve poor people. Social reproduction at the top of the socioeconomic totem pole reduces the possibility for people from the bottom to move up. Mathematically, in order for upward mobility to exist there must be downward mobility. On the flipside of the finding that 42% of children born into the bottom income quintile will remain in the bottom quintile of earnings in adulthood lies the fact that 39% of children born into the top quintile will themselves earn in the top quintile in adulthood (Reeves & Howard 2013). There is a stickiness to both the top and bottom quintiles of income that causes children to be likely to return to a place near their origin on the socioeconomic ladder. Is there a systematic explanation behind the observed social reproduction?   
+
+The relationship between family background and a child’s occupational status is mediated by child’s educational attainment (Nelson et al 2009). Education has a profound impact on the amount of money a person makes in adulthood (Chetty 2017). Chetty is not alone in his findings, “Education is associated with greater wealth and more rapid wealth accumulation, net of income (Conley 2001b; Conley & Ryvicker 2004; Keister 2003a,b, 2004; Yamokoski & Keister 2006). Although the association between education and wealth accumulation is robust, its underlying mechanisms have received little attention” (Killwead et al 2017). Education’s impact on future earnings is not a bad thing. Education can help people gain skills that are valued in the labor market and make them better at their job. People earning more money because they are genuinely more skilled at their job is okay. Part of the real problem lies in the way education is being distributed. The reason such a high proportion of people from the top income quintile remain there as adults isn’t completely due to skill- “A sizable proportion (43%) of those who remain in a higher-income household are of modest skill, and would be expected on the basis of skill to fall” (Reeves & Howard 2013). Identifying what factors are keeping modest-skilled people from high-income backgrounds in the upper class is at the crux of developing ways to increase downward mobility. One key factor is higher education- “Getting a college degree is associated with a 23% greater chance of an adolescent of modest skills- i.e., predicted to fall- remaining in a higher income household as an adult” and “Those who remain at the top [2 income quintiles] are almost three times as likely to have completed college as those who fall down”( Reeves & Howard 2013). This leads to an important question- why are people from the upper echelons of society able to use college as a means to stay inside the elite while people from lower socioeconomic backgrounds are finding it increasingly difficult to use college as a pathway to a higher socioeconomic status?
+
+The steep price of college makes higher education more accessible to young adults from the upper class. Families in the upper-middle class have more economic resources available to pay for college than their lower-class peers, but middle class families have been the primary recipient of new financial aid programs in recent years. The new wave of HOPE tax credits are designed for families with annual incomes between \$40,000 and \$80,000 to help pay for college (Mumper 2003). However, this does little to help students from families who make less than \$40,000 a year. The HOPE tax credits which appear to be serving as a substitute for the Pell Grant do not help poor families in the same way that the Pell Grant historically has. This change alongside the net rise in college prices will have a disproportionate impact on the poor community’s ability (or lack thereof) to attend college. Research has shown as the cost of attending college increases, the participation rates for students from low-income backgrounds declines (Kane 1995). This holds true even in periods of time when both tuition and overall enrollments are rising (Kane 1995). Unfortunately, cost is not the only factor inhibiting the ability for young adults from lower-incomes to attend college. Mumper finds “the growing financial problems faced by potential college students from disadvantaged backgrounds were often made moot by their increasing difficulty in securing admission to the college of their choice”( Mumper 2003). Logically the next question is - why are people from disadvantaged backgrounds struggling to be admitted into college?  
+
+Family background is consistently found to be related to educational outcomes such as grades, test scores, school dropout, and educational-degree attainment (Nelson et al 2009). Students from families with higher socioeconomic status have better access to resources that enhance academic achievement . These high class parents also have access reliable transportation and flexible schedules which it make it possible for their children to attend enriching extracurricular activities (Lareau, 2003). Middle class parents are more involved in their children’s education (Nelson et al 2009).  Lareau believes this difference is not due to working class parents not wanting their children to do well academically, but instead because working class parents rely more heavily on a child’s experience at school to educate them. Different parenting strategies between classes is contributing to the academic divide among students. The social networks upper middle class parents create around the school helps them monitor their child’s progress while interactions working class parents have with the school are often marked by “a sense of distrust powerlessness, and ineffectiveness” (Lareau 1987,2003). The gap in parenting can be exacerbated by the process of tracking in which teachers modify their methods of instruction to suit the abilities of their students. Tracking widens existing gaps of knowledge and is widely considered one of the most important mechanisms in the social reproduction process (Nelson et al 2009). Parental influence, teacher recommendations, as well as organizational and resource constraints have all been found to have an impact on the track a student is assigned (Maureen Hallinan 1994). Students from upper class backgrounds can take advantage of their parent’s resources and influence and separate themselves from their lower-class peers without any mention of academic skill. So far, this paper has outlined a myriad of ways in which contemporary literature finds persons from the upper class are given advantages that help them get into college and obtain a high status job. This raises the question- what does the current research propose to help curb benefits disproportionately received by the upper class? 
+
+Socioeconomic affirmative action would help equalize the playing field through recognition and accommodation of the structural disadvantages people from lower socioeconomic backgrounds face in the admissions process. Simultaneously this would help account for the advantages upper income families pass down to their children. The current literature is divided on how feasible the cost burden of SES-based affirmative action is for colleges. But for the sake of this paper,  we are more concerned on how the proposed SES-based affirmative action’s policies effect on promoting downward mobility. A college giving low-income students a boost in admissions doesn’t help if the low-income students don’t apply. 
+
+	There is a major divide in the way students from low-income backgrounds go about applying to college compared to higher-income students (Avery & Hoxby 2013). Parents from high class backgrounds are more likely to have knowledge about the college admissions process. Parental guidance as well as access to financial resources leads to upper-class high-school students to apply to a variety of schools typically including a “reach” and safety” choice. This pattern of applications by people from higher socioeconomic status sets them in a position to succeed. On the flipside, students from lower-income backgrounds are more likely to opt to apply to cheaper schools that are closer to home (Avery & Hoxby 2013). Thereby lowering their effective chance of getting into a higher status college. “Attempts to improve application and admission rates focus on a small number of high schools in urban area: but most high-skill, low-income adolescents are scattered across a much broader range of neighborhoods and schools”( Reeves & Howard 2013).  Avery and Hoxby (2013) argue that there exists a supply of a high-achieving low income students that are being overlooked by selective institutions simply because these students are not applying. If we find a way to get high-achieving low-income students this will give colleges an opportunity to fulfill its role as “the great equalizer”. High-achieving low-income students, once admitted, graduate from selective institutions at a high rate. Additionally, “selective institutions typically cost [low-income students] less, owing to generous financial aid, than the two-year and nonselective four-year institutions to which they actually apply (Avery & Hoxby 2013). Thus, future research should be conducted on potential ways to change the way in which low-income (especially high-achieving low-income) students apply. 
+	
+Implementation of socioeconomic affirmative action and changing typical application strategies only effect students after they have reached their late teenage years. The gap in test scores between high-income and low-income students is already very wide by the time students reach adolescence (Reeves & Howard 2013). Breen & Jonnson mimic this finding- "Among the most robust findings of stratification research are that origin effects are stronger at earlier than later educational transitions” (Breen & Jonnson 2005). Thus, the impact of socioeconomic status manifests itself in the classroom long before the college process. Therefore, the process of promoting life chances should be started much earlier.   
+
+There is a gap in the literature on wealth’s impact on downward mobility (or lack thereof). There are plenty of valid reasons behind this- wealth data is still relatively new, the distribution of wealth is heavily right skewed, and what aspects of economic well-being wealth captures distinctly from income is still debatable (Killwead et al 2017). However, there is valid reason to believe wealth has a special impact on downward mobility. Wealth can be passed down intergenerationally on a greater scale than income. The right skewedness of wealth is important here because some parents on the right tail of wealth distribution can pass down so much money that decreases the importance of income in the next generation. For example, a child who wants to pursue a passion such as singing or art could feel more willing to do so knowing that his/her parent’s money can keep him/her financially stable. Additionally, “housing wealth constitutes the single largest component of wealth among middle-class families” (Wolff 2016). Therefore, wealth gives us a decent predictor of housing situations which is important for which schools there child attends.   
+
+Another weakness of the current literature on downward mobility is the lack of qualitative data. There has been a lot of digging into numbers, but contemporary literature has not utilized interviews to simply check in and ask people about their lived experiences. As a student of Middlebury I have access to a student body filled with people from the top income quintile who are on track to socially reproduce and stay in the top quintile as adults. Thus, I have a unique opportunity to probe benefactors of social reproduction about what aspects of their childhood helped groom them for the college application process.   
+
+There is a lot of literature confirming that the phenomena of social reproduction is happening in America today. “Much research shows that characteristics of the family of origin (such as parental socioeconomic status and education, cultural assets, social networks, and parental motivation) are associated with educational outcomes (e.g., de Graaf et al. 2000, Duncan & Brooks-Gunn 1997, Gamoran 2001) (Breen & Jonnson 2005). College is currently moving in the wrong direction and promoting social reproduction more than ever. Raising tuition and the diminishing impact of the Pell Grant is making it more difficult for students from the bottom of the socioeconomic totem pole to make it into college. This is just adding to the disadvantages students from low income backgrounds already face. The literature on downward social mobility lacks sufficient qualitative analysis on the lived experiences of people who are born at the top  and stay there in adulthood. Additionally, the role of wealth in preventing downward mobility has not been sufficiently investigated. In contemporary literature there is a general consensus that the effects of socioeconomic differences are felt in adolescence (way before college). There is lots of modern literature on higher education’s role in financial outcomes later in life. But there exists little literature in how high schools differently prepare students for college. To address these gaps my research will involve interviewing college students at Middlebury about their background and high school experiences and what they did to help make themselves stronger applicants for college. Additionally, I will analyze the impact wealth plays on college readiness searching for mediating factors such as child’s home location. I also plan to investigate how different high schools prepare students’ for college and their varying effectiveness.
+
+##Data and Methods
+
+The quantitative approach is the correct method for my research question because I am investigating how much college contributes to social reproduction. Interviews wouldn’t be able to display how widespread the effect of higher education plays on income in the same way that quantitative data will be able to. Additionally, quantitative data allows me to give evidence of the parental income disparities that happen in many colleges (especially elite ones).   
+My research is conducted from a data set of over 30 million college students in the United States from 1999-2013 collected by Raj Chetty et al. I selected this data set because it contained extensive data on the financial lives of college students; the data set shares estimates of both parents and children by college. Additionally, thanks to the researchers who collected the data it was readily available for me to use.  
+
+The data consists of 84 variables that can be manipulated to create other important findings. The rows of the data is organized by cohort (the year of birth of the children in this row) and name (name of the college or group). There are too many variables in the data set to go over all of them, but thus far my research has used the following variables- type (public, private or for-profit), the iclevel (4-year+, 2-year, less than 2-year), tier(selectivity and type of college), count (average number of kids per cohort at said college), par_mean (mean parental income), par_median(median parental income), par_q[PARQUINT] (the fraction of parents in an income quintile [PARQUINT]. 1 is the bottom quintile and 5 is the top), k_q[KIDQUINT] (the fraction of kids in an income quintile [KIDQUINT] (1 is the bottom quintile and 5 is the top), kd[KIDQUINT]_cond_parq[PARQUINT] (probability of kid in quintile [KIDQUINT] conditional on parent in quintile [PARQUINT]. variables serve as the building blocks I use to create sociological stories. I found myself searching for control variables, so I added a myriad of institutional characteristics I found intriguing, such as rejection rate and average SAT score, to my data set for investigation. This is my first quantitative project, so I have gone about analyzing the data in a variety of ways with varying success. I am working with a large data set- 29580 observation of 84 variables (more once I added the institutional characteristics), so the first step I made was trying to make sense of the data. I knew my general interest in this project was colleges’ role in downward mobility.   
+
+Therefore I investigated into questions related to downward mobility such as- “what is the distribution by income quintile of students with parents in the top income quintile”? Then I would formulate code to answer the question. Once I found the answer I started thinking sociologically about factors that could explain those findings. For example, after I made a bar graph showing the distribution by income quintile of students with parents in the top income quintile I remembered modern literature on downward mobility finds that the economic advantage passed down by high income parents is mediated by education. Thus, I wanted to incorporate education into the graph. Sometimes finding which variable to use proved challenging and often times I ended up using a guess and check method. One such case occurred when I was trying to include the education level of people in the bar graph I had difficult. Initially, I tried the tier variable but 14 categories made the results too convoluted to be valuable. A modified iclevel (with 4 categories) produced much more valuable results. After I create some valuable data I would package it to make it as easily understandable as possible. Then I would go back to the drawing board. In short my process goes as follows: first I would think of a potential interest; next I would visualize some data related to that interest. If needed, I then clean the data. After that, I analyze the data and think of sociological explanations. Then I test these sociological explanations. If I found something valuable I would polish it otherwise I would continue searching. The analysis process is definitely organic. Sometimes I find myself searching for sociological explanations from the data and other times I’m thinking of how to make data to test a hypothesis. I’ve also discovered I will create dozens of graphs that I won’t use for every graph that could find its way into my final project. Exploring the Chetty data in R has definitely been a learning experience. It has been exciting to use many of the statistical concepts I’ve learned in class to conduct my own research. 
+
+##Preliminary Results
+
+```{r, warning = FALSE, header = FALSE, message = FALSE, echo=FALSE}
+chettey <- read.csv("mrc_table3.csv")
+library(tidyverse)
+library(pander)
+```
+
+```{r, echo=FALSE}
+#Drop Levels
+chet <- chettey %>%
+  filter(cohort == 1981 ) %>%
+  droplevels()
+```
+
+```{r, echo=FALSE}
+#Add counts
+chet <- chet %>%
+  mutate(ct_kq5_cond_parq1 = count * kq5_cond_parq1 * par_q1,
+         ct_kq5_cond_parq2 = count * kq5_cond_parq2 * par_q2,
+         ct_kq5_cond_parq3 = count * kq5_cond_parq3 * par_q3,
+         ct_kq5_cond_parq4 = count * kq5_cond_parq4 * par_q4,
+         ct_kq5_cond_parq5 = count * kq5_cond_parq5 * par_q5,
+         
+         ct_kq4_cond_parq1 = count * kq4_cond_parq1 * par_q1,
+         ct_kq4_cond_parq2 = count * kq4_cond_parq2 * par_q2,
+         ct_kq4_cond_parq3 = count * kq4_cond_parq3 * par_q3,
+         ct_kq4_cond_parq4 = count * kq4_cond_parq4 * par_q4,
+         ct_kq4_cond_parq5 = count * kq4_cond_parq5 * par_q5,
+         
+         ct_kq3_cond_parq1 = count * kq3_cond_parq1 * par_q1,
+         ct_kq3_cond_parq2 = count * kq3_cond_parq2 * par_q2,
+         ct_kq3_cond_parq3 = count * kq3_cond_parq3 * par_q3,
+         ct_kq3_cond_parq4 = count * kq3_cond_parq4 * par_q4,
+         ct_kq3_cond_parq5 = count * kq3_cond_parq5 * par_q5,
+         
+         ct_kq2_cond_parq1 = count * kq2_cond_parq1 * par_q1,
+         ct_kq2_cond_parq2 = count * kq2_cond_parq2 * par_q2,
+         ct_kq2_cond_parq3 = count * kq2_cond_parq3 * par_q3,
+         ct_kq2_cond_parq4 = count * kq2_cond_parq4 * par_q4,
+         ct_kq2_cond_parq5 = count * kq2_cond_parq5 * par_q5,
+         
+         ct_kq1_cond_parq1 = count * kq1_cond_parq1 * par_q1,
+         ct_kq1_cond_parq2 = count * kq1_cond_parq2 * par_q2,
+         ct_kq1_cond_parq3 = count * kq1_cond_parq3 * par_q3,
+         ct_kq1_cond_parq4 = count * kq1_cond_parq4 * par_q4,
+         ct_kq1_cond_parq5 = count * kq1_cond_parq5 * par_q5)
+```
+
+```{r, echo=FALSE}
+characteristics <- read.csv("https://opportunityinsights.org/wp-content/uploads/2018/04/mrc_table10.csv")
+```
+
+```{r, echo=FALSE}
+characteristics <- select(characteristics, -c(name, region, state, type, tier,
+                                              tier_name, iclevel, fips, cz, czname,
+                                              cfips, county, multi))
+```
+
+```{r, echo=FALSE}
+#add instiutional characteristics 
+chetty <- left_join(chet, characteristics, by = "super_opeid")
+```
+
+###Graph 1
+```{r, echo=FALSE}
+graph1 <- chet[!(is.na(chet$iclevel)), ] #remove insufficient data and no-college
+graph1 <- graph1 %>%
+  mutate(iclevel = factor(iclevel, labels = c("4-year", "2-year", "Less than 2-year")))
+```
+
+```{r, warning = FALSE, echo=FALSE}
+ggplot(graph1, aes(par_q5, k_rank, color = iclevel))+geom_point()+geom_smooth(method = "lm")+labs(title = "Colleges Proportion from Top Quintile on Financial Success of Students", x = "Fraction from Top Quintile", y = "Mean Student Earnings Rank", 
+                                           subtitle = "Chettey Data 1981")
+```
+
+The graph above displays the relationship between the proportion of the student body with parent's income inside the top quintile and the average student's rank on the economic totem pole after college. Each point on the graph represents a college. The colors represent whether the institutions is intended to be a 4-year college, 2-year college, or less than 2-year college. The lines are there as a visual aid to help see the relationship between fraction of students with parent's in the top quintile of earners and student's future income rank. 
+
+Graph 1 shows that there is a positive association between the proportion of the student body from the top quintile and a student's financial success after college. This trend holds for 4-year and 2-year. Graph 1 also demonstrates the importance of the type of institution on future earnings. The line representing the expected mean student earnings is higher for 4-year colleges than 2-year colleges given the same fraction with parent's inside the top quintile at any place in the graph. 
+
+###Graph 2
+```{r, echo=FALSE}
+chet2 <- chetty %>%
+  filter(super_opeid != -1) %>% #get rid of colleges with insufficient data
+  mutate(iclevel = ifelse(super_opeid == -999, 4, iclevel)) %>%
+  mutate(iclevel = factor(iclevel, labels = c("4-year", "2-year", "Less than 2-year", "No College")))
+```
+
+```{r, echo=FALSE}
+chettey2 <- chet2 %>%
+  group_by(iclevel) %>% 
+  summarize(Bottom= sum(ct_kq1_cond_parq5, na.rm=TRUE),
+            Second= sum(ct_kq2_cond_parq5, na.rm=TRUE),
+            Third= sum(ct_kq3_cond_parq5, na.rm=TRUE),
+            Fourth= sum(ct_kq4_cond_parq5, na.rm=TRUE),
+            Top= sum(ct_kq5_cond_parq5, na.rm=TRUE))
+```
+```{r, echo=FALSE}
+chettey2 <- chettey2 %>%
+  gather(par_quintile, count, Bottom:Top) %>%
+  mutate(par_quintile = factor(par_quintile, 
+                               levels = c("Bottom","Second","Third","Fourth","Top")))
+```
+```{r, echo=FALSE}
+ggplot(chettey2, aes(par_quintile, count, fill=iclevel))+geom_col()+ 
+  labs(title= "Income Distribution of Students From Top Quintile",
+       x = "Student Quintile", y="Count", subtitle = "Chettey Data 1981") +
+     scale_y_continuous(labels = scales::comma)
+```
+
+###Graph 3 
+
+```{r, echo=FALSE}
+chettey3 <- chet2 %>%
+  group_by(iclevel) %>% 
+  summarize(Bottom= sum(ct_kq1_cond_parq1, na.rm=TRUE),
+            Second= sum(ct_kq2_cond_parq1, na.rm=TRUE),
+            Third= sum(ct_kq3_cond_parq1, na.rm=TRUE),
+            Fourth= sum(ct_kq4_cond_parq1, na.rm=TRUE),
+            Top= sum(ct_kq5_cond_parq1, na.rm=TRUE))
+```
+```{r, echo=FALSE}
+chettey3 <- chettey3 %>%
+  gather(par_quintile, count, Bottom:Top)%>%
+  mutate(par_quintile = factor(par_quintile, 
+                               levels = c("Bottom","Second","Third","Fourth","Top")))
+```
+```{r, echo=FALSE}
+ggplot(chettey3, aes(par_quintile, count, fill=iclevel))+geom_col()+ 
+  labs(title= "Income Distribution of Students From Bottom Quintile",
+       x = "Student Quintile", y="Count", subtitle = "Chettey Data 1981") +
+     scale_y_continuous(labels = scales::comma)
+```
+
+Graph 2 and Graph 3 display the dramatic differences in outcomes for persons born into the top quintile and persons born into the bottom quintile. Graph 2 represents the income distribution of students with parents in the top income quintile. The most likely outcome for a student from the top income quintile is to earn inside the top quintile in adulthood. At a glance, most students with parents in the top quintile attend a 4-year college. Around 4 out of 5 students from the top quintile who earn in the top quintile upon adulthood attend a 4-year college. However, for persons from the top quintile who end up in the bottom 2 quintiles the ratio of students who attend a 4-year college as opposed to a 2-year college or no college is much more split- around 1:1. This exemplifies a theme in the literature- the advantages of high-income parents is mediated by education. High-income parents plus high quality education breeds financial success later in life. Graph 3 tells a much different story.
+Graph 3 displays the income distribution of persons with parent's from the bottom income quintile. The most likely outcome for a person from the bottom income quintile is to earn in the bottom quintile as an adult. Similar to Graph 2, students are most likely to return to the same quintile of income as their parents. This finding is consistent with what is found in modern literature on intergenerational mobility. There is a "stickiness" that causes people to be inside the same income quintile as their parents. This "stickiness" is especially prominent at both extremes of parental income (Reeves YEAR). Another striking difference from Graph 2 to Graph 3 is the proportion of people who don't attend college. Most people with parents earning inside the bottom quintile don't attend college. However, for persons from the bottom quintile who make it into the top quintile in adulthood the proportion who don't attend college is smaller than the proportion who attend a 4-year college. This is the same phenomenon that happened in Graph 2- people who make it to the top quintile generally have a higher education. 
+
+###Correlation Matrix
+
+```{r, echo=FALSE}
+select_chetty <- chetty %>%
+  select(k_rank, par_q5, par_median, scorecard_rej_rate_2013,
+         scorecard_netprice_2013, scorecard_median_earnings_2011, sat_avg_2001, sticker_price_2000,
+         exp_instr_2000, avgfacsal_2001, black_share_fall_2000, grad_rate_150_p_2002)
+```
+
+```{r, echo=FALSE}
+matrix <- round(cor(select_chetty[ , 1:12], use = "complete.obs"),3) 
+corr_variables <- c("Income Rank", "% from Top Quintile", "Median Parent Income", "Rejection Rate"," Cost if From Bottom Quintile", "Median Earning","Average SAT Score", "Cost of Attendance",
+                    "Expenditures per Student", "Average Faculty Salary",
+                    "Share of Black Undergraduates", "Graduation Rate")
+rownames(matrix) <- corr_variables
+colnames(matrix) <- corr_variables
+
+
+pander(matrix[1:2, 2:12])
+```
+
+There is a lot to unpack in the correlation matrix above. We are looking into the level of association average income-rank after college and the proportion of the student body with parents in the top quintile of income have with different institutional characteristics. The first thing that should be noted is there is a strong correlation between income rank and the percentage of the student body from the top quintile. Therefore, most of the insitutional characteristics will have a similar correlation with both of the aforementioned characteristics. I will highlight some of the more interesting correlations.
+
+There is a strong association between the average cost of attendance and the proportion of the student body madeup by students from the top quintile (.522). This is likely because a high cost of attendance is a detterant for students from low-income backgrounds. Since persons from the top income quintile to don't face these obstacles to entry in the same way, logically the student body will be skewed in favor of having more students from the top quintile. There is an extremely strong association between the percentage from the top quintile and the average SAT score of an institution (.808). There is likely a multiple contributing factors to this astoundingly high association. For one, high-income parents are more likely to be able to afford (and push their children to participate in!) tutoring and other forms of SAT prep. This contributes to students with high-income backgrounds generally scoring higher on the SAT. Additionally, students from high-income backgrounds with high SAT scores make up a large portion of the student body at many elite institutions. There is a very strong association between the fraction of students with parents in the top income quintile and the graduation rate (.729). Generally speaking, this means colleges with more students from the top-quintile have a higher graduation rate. There is a moderate negative association between the share of students who identify as Black and the proportion of students from the top quintile. I hypothesize that this association is due to there being a disproportionately small amount of Black people inside the top income quintile.    
+
+There is a strong association between the mean student income rank and the average faculty salary (.662). It seems likely that better institutions generally have better professors. One of the best ways to attract and maintain high-quality professors is a high salary. I would be interested in whether it is the quality of education or the value of the degree at more elite institutions that contributes more to the high ranking of students from elite colleges on the economic totem pole after graduation.  
+
+##Discussion and Limitations
+
+My pilot project serves as a stepping stone to join the conversation on higher education’s role in intergenerational mobility. I read numerous papers by key members of the conversation in modern literature to ground my understanding of the major conclusions sociologists have come to on the causes of social reproduction. I found myself inspired by Chetty and Reeves; both of them package vast amounts of information into easily understood visuals. I found this method particularly powerful which is part of the reason I chose a quantitative project.   
+
+Like other contemporary sociologists, I aimed to layout the framework of education and background play a key role in a person’s rank on the economic totem pole. Graphs 2 and 3 layout the economic outcome differences between persons with parents from the top income quintile and parents from the bottom income quintile respectively. The difference is meant to be striking. Additionally, the graph demonstrates how education is obtained at different rates for people from different economic background. Thereby, the graph ties back my research interest- higher education’s role in social reproduction. Graphs 2 and 3 show that social reproduction is extremely prevalent. People from either background are most likely to return to the same income quintile as their parent in adulthood. Differences in education explains much of the difference in economic outcome between persons from the top quintile and persons from the bottom quintile. Graph 1 portrays the positive association between proportion of students from the top quintile and students’ income rank after college. The correlation matrix displays the strength of association average income-rank after college and the proportion of the student body with parents in the top quintile of income have with different institutional characteristics. The correlation matrix has the most room to grow into further research. Correlation is just the tip of the iceberg in potentially important sociological findings. Next steps would involve thinking sociologically for why an association is the way it is. Then, testing my hypothesis through the appropriate steps.  
+
+One of the most severe limitations of my project thus far, is that I haven’t investigated the application process. One factor contributing to the high proportion of students from high-income backgrounds at elite institutions is differences in how high-income and low-income students apply to college (Avery & Hoxby  2013). Limiting my research to students at colleges doesn’t give credit to the possibility that there could be a significant number of high-achieving low-income students that could help colleges accept more low-income students without reducing their academic prestige. Another shortcoming of my research so far is that I haven’t identified an institutional characteristic that I believe to play a more important role in social reproduction than currently recognized. I have mimicked baseline findings of other sociologists on education’s impact on social reproduction, but I want something specific to separate my research from the research that has already been conducted. One potential way I could try and add to the existing conversation by investigating the impact of parental wealth on a student’s economic outcome. However, I worry that I could spend lots of time manipulating wealth, a tricky variable  to use due to wealth distribution having a right skew,  only to find no significantly different findings than what can be obtained using income (an easier to use variable that has been used thoroughly in intergenerational mobility research). On the bright-side, the pilot project has helped hone my skills in analyzing quantitative data as well as my ability to create visuals. I found success in navigating the Opportunity Insights webpage to get loads of valuable data available to me. R has been a useful tool to help me explore that data as well as tool to clean and present polished information. 
+
+##Conclusion
+Higher education plays an important role inside social reproduction. Persons from the top quintile attend college at dramatically different rates than persons from the bottom quintile (Graphs 2 & 3). Additionally, education has a profound impact on a person’s expected level of income in adulthood(Chetty 2017). I don’t believe my research up to this point in isolation could be used to formulate meaningful policy changes to combat higher education’s current contribution to social reproduction. However, a redesigned pop-sociology version of my research could be used to gather awareness to the extent at which colleges are failing to be accessible/attended by the poor, but instead helping the rich stay rich. Awareness and desire for change would spur ideas that could help return college to its rightful place as part of “the great equalizer”.   
+
+I believe I will continue this project in some capacity in the fall. However, after the completion of the pilot project I want to step back and analyze what direction I want this research to take. Over the summer I plan to organize my thoughts on what form I would like my senior-work to take. Additionally, I plan to continue reading literature on intergenerational mobility in a search for fresh ideas and places where more research could be useful. In the first week of classes next fall I want to re-write my research question. After that, I want to revise my literature review again to cater to my most recent research question as well as to incorporate any of my summer readings that I found particularly insightful. I plan to complete a revised literature review by the end of the fourth week of the semester. Weeks 2-8 of next fall I want to spend coding to manipulate and visualize data. Additionally, I want to spend time inside that period writing up preliminary results. Ideally, the last 4 weeks would be spent refining my project.
