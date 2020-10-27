@@ -1,0 +1,50 @@
+---
+title: "Gather Across Tiers and Quintiles"
+author: "Matt Lawrence"
+date: "3/7/2019"
+output: pdf_document
+---
+
+Start with a dataframe that has the count - for each tier - of kids from each parent quintile ending up in the top 1 percent. This is going to work the cleanest if you only have these variables in your dataframe.
+
+```{r load data and packages}
+library(tidyverse)
+tier1pc <- read.csv("chris_gather.csv")
+```
+
+The trick is to turn the wide data into long data using gather. In this next chunk, you create a new data frame called `tier_gather` based on the existing `tier1pc` data frame. The gather line says:
+
+- Create a new variable called `par_quintile`
+- Create a new variable called `count`
+- Each of the variable names from `tier1pc` between count_ktop1_cond_parq1 and count_ktop1_cond_parq5 will become the values of the new variable called `par_quintile`
+- Each of the values associated with those variable names in `tier1pc` will become the values of the new `count` variable for the observations where the value of `par_quintile` is the original variable 
+
+```{r gather}
+tier_gather <- tier1pc %>%
+     gather(par_quintile, count, count_ktop1_cond_par_q1:count_ktop1_cond_par_q5)
+```
+
+If it worked correctly, we should now have 25 observations. That is one observation for each parent quintile for each tier.
+ 
+Let's clean up some of the labels before making the plot.
+```{r rename variables and levels}
+tier_gather <- tier_gather %>%
+     mutate(par_quintile = factor(par_quintile,
+                                  labels = c("Q1", "Q2", "Q3", "Q4", "Q5")),
+            tier = factor(tier,
+                          labels = c("Tier A", "Tier B", "Tier C", "Tier D", "Tier E")))
+```
+
+And let's make the plot.
+```{r plot it}
+p1 <- ggplot(tier_gather, aes(x = par_quintile, y = count, fill = tier))
+p1 + geom_col()
+```
+
+```{r}
+my_gather <- tier1pc %>%
+  gather(par_quintile, count, count_ktop1_cond_par_q1:count_ktop1_cond_par_q5)
+```
+```{r p2}
+ 
+```

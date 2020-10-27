@@ -1,0 +1,237 @@
+---
+title: "project_update"
+author: "Chris Gonzales"
+date: "5/9/2019"
+output: pdf_document
+---
+
+
+```{r, warning = FALSE, header = FALSE, message = FALSE}
+chettey <- read.csv("mrc_table3.csv")
+library(tidyverse)
+library(pander)
+library(stargazer)
+```
+
+Add counts to the data
+```{r}
+chettey <- chettey %>%
+  mutate(ct_kq5_cond_parq1 = count * kq5_cond_parq1 * par_q1,
+         ct_kq5_cond_parq2 = count * kq5_cond_parq2 * par_q2,
+         ct_kq5_cond_parq3 = count * kq5_cond_parq3 * par_q3,
+         ct_kq5_cond_parq4 = count * kq5_cond_parq4 * par_q4,
+         ct_kq5_cond_parq5 = count * kq5_cond_parq5 * par_q5,
+         
+         ct_kq4_cond_parq1 = count * kq4_cond_parq1 * par_q1,
+         ct_kq4_cond_parq2 = count * kq4_cond_parq2 * par_q2,
+         ct_kq4_cond_parq3 = count * kq4_cond_parq3 * par_q3,
+         ct_kq4_cond_parq4 = count * kq4_cond_parq4 * par_q4,
+         ct_kq4_cond_parq5 = count * kq4_cond_parq5 * par_q5,
+         
+         ct_kq3_cond_parq1 = count * kq3_cond_parq1 * par_q1,
+         ct_kq3_cond_parq2 = count * kq3_cond_parq2 * par_q2,
+         ct_kq3_cond_parq3 = count * kq3_cond_parq3 * par_q3,
+         ct_kq3_cond_parq4 = count * kq3_cond_parq4 * par_q4,
+         ct_kq3_cond_parq5 = count * kq3_cond_parq5 * par_q5,
+         
+         ct_kq2_cond_parq1 = count * kq2_cond_parq1 * par_q1,
+         ct_kq2_cond_parq2 = count * kq2_cond_parq2 * par_q2,
+         ct_kq2_cond_parq3 = count * kq2_cond_parq3 * par_q3,
+         ct_kq2_cond_parq4 = count * kq2_cond_parq4 * par_q4,
+         ct_kq2_cond_parq5 = count * kq2_cond_parq5 * par_q5,
+         
+         ct_kq1_cond_parq1 = count * kq1_cond_parq1 * par_q1,
+         ct_kq1_cond_parq2 = count * kq1_cond_parq2 * par_q2,
+         ct_kq1_cond_parq3 = count * kq1_cond_parq3 * par_q3,
+         ct_kq1_cond_parq4 = count * kq1_cond_parq4 * par_q4,
+         ct_kq1_cond_parq5 = count * kq1_cond_parq5 * par_q5)
+```
+
+```{r}
+chet <- chettey %>%
+  filter(cohort == 1981 ) %>%
+  droplevels()
+```
+
+```{r gather}
+chet_gather <- chet %>%
+     gather(par_cond_quintile, count, ct_kq5_cond_parq1:ct_kq1_cond_parq5)
+```
+
+```{r}
+summary(lm(k_rank ~ par_cond_quintile, chet_gather))
+```
+
+grouped by parent quintile
+```{r}
+chet <- chet %>%
+  mutate(ct_parq1 = count * par_q1,
+         ct_parq2 = count * par_q2,
+         ct_parq3 = count * par_q3,
+         ct_parq4 = count * par_q4,
+         ct_parq5 = count * par_q5)
+```
+```{r}
+chet_pq_gather <- chet %>%
+  gather(par_quintile, q_count, ct_parq1:ct_parq5)
+```
+```{r, warning=FALSE}
+ggplot(chet_pq_gather, aes(par_quintile, q_count, fill=iclevel))+geom_col()
+```
+
+```{r}
+a <- chet_pq_gather %>%
+  group_by(par_quintile) %>%
+  summarize(ct_q5 = sum(q_count * k_q5, na.rm = TRUE))
+a
+```
+
+##Significant differences in who makes it to the top quintile
+By iclevel
+```{r}
+t.test(chet$k_q5[chet$iclevel == 1], chet$k_q5[chet$iclevel == 3])
+```
+There is a significant difference in the mean % of students who make it into the top economic quintile between 4-year and less than 2-year schools
+```{r}
+t.test(chet$k_q5[chet$iclevel == 1], chet$k_q5[chet$iclevel == 2])
+```
+There is a significant difference in the mean % of students who make it into the top economic quintile between 4-year and 2-year schools
+```{r}
+t.test(chet$k_q5[chet$iclevel == 2], chet$k_q5[chet$iclevel == 3])
+```
+There is a significant difference in the mean % of students who make it into the top economic quintile between 2-year and less than 2-year school
+
+By different makeups of parent quintile 
+
+Difference between mean percent who make top quintile in the overall sample and colleges with more than 50% of the student body having parents from the top quintile
+```{r}
+t.test(chet$k_q5[chet$par_q5 > .08], chet$k_q5) #could use bigger portion from top quintile for more dramatic difference
+```
+
+```{r}
+t.test(chet$k_q5[chet$par_q1 > .03], chet$k_q5)
+```
+
+```{r}
+chet2 <- chet %>%
+  mutate(region = factor(region,
+                         labels = c("Northeast", "Midwest", "South", "West")))
+```
+
+
+```{r, warning=FALSE}
+ggplot(chet, aes(par_q5, k_rank))+geom_point()+geom_smooth()+facet_grid(.~ iclevel)
+ggplot(chetty, aes(par_mean, k_rank))+geom_point()+geom_smooth()
+ggplot(chet, aes(par_q5, k_rank, color = iclevel))+geom_point()+geom_smooth(method = "lm")
+```
+Multiply par_q5 by 100 so we can look at the effect of each additional percentage point
+```{r}
+chet <- chet %>%
+  mutate(hundred_par_q5 = par_q5 * 100)
+```
+
+```{r}
+summary(lm(k_rank ~ par_q5 + iclevel, chet))
+```
+There is a significant relationship between the percentage of the student body in the top quintile and the expected k_rank. If 0% of the student body is from the top quintile the average k_rank is .4711. Each additional percent
+
+
+
+Here is how to merge your dataset with the dataset that has all the institutional characteristics. First, read in the dataset with the characteristics:
+
+```{r}
+characteristics <- read.csv("https://opportunityinsights.org/wp-content/uploads/2018/04/mrc_table10.csv")
+```
+
+See this page (https://opportunityinsights.org/wp-content/uploads/2018/04/Codebook-MRC-Table-10.pdf) for a list of the variables in the `characteristics` data frame.
+
+The `characteristics` data frame and the `chettey2` data frame both use the `super_opeid` as a unique id number for each institution. That makes it easier to match up the two data frames using that variable. The other thing that will make this go more smoothly is getting rid of some of the columns in the `characteristics` data frame that also exist in the `chettey2` data frame:
+
+```{r}
+characteristics <- select(characteristics, -c(name, region, state, type, tier,
+                                              tier_name, iclevel, fips, cz, czname,
+                                              cfips, county, multi))
+```
+
+Now we can merge. We want the chettey2 dataframe to be the master (to be the dataframe we are adding the characteristics to if there is a match by super_opeid). For that ordering, use left_join with chettey2 as the left data frame and characteristics as the right data frame:
+
+```{r}
+chetty <- left_join(chettey, characteristics, by = "super_opeid")
+```
+
+
+
+It would now be possible to add institutional characteristics as controls to the basic regression model from earlier!
+
+##Correlation Matrix
+```{r}
+select_chetty <- chetty %>%
+  select(k_rank, k_rank_cond_parq5,tier, type, iclevel, par_median, barrons, scorecard_rej_rate_2013,
+         scorecard_netprice_2013, scorecard_median_earnings_2011, sat_avg_2001, sticker_price_2000,
+         exp_instr_2000, ipeds_enrollment_2000, avgfacsal_2001, region, black_share_fall_2000, par_q1:par_q5, grad_rate_150_p_2002)
+```
+
+
+```{r create matrix}
+matrix <- round(cor(select_chetty[ , 1:23], use = "complete.obs"),3) 
+pander(matrix[1:2, 3:23])
+```
+Association to k_rank
+
+No (0-.19)
+
+Weak(.2-.29)
+
+Moderate(.3-.49)
+
+Strong(.5+)
+
+
+
+k_rank, tier, type, iclevel, par_median, barrons, scorecard_rej_rate_2013,
+         scorecard_netprice_2013, scorecard_median_earnings_2011, sat_avg_2001, sticker_price_2000,
+         exp_instr_2000, ipeds_enrollment_2000, endowment_pc_2000, avgfacsal_2001, region, black_share_fall_2000, par_q1:par_q5
+```{r}
+cor(chetty$k_rank, chetty$tier, use = "complete")
+cor(chetty$k_rank, chetty$type, use = "complete")
+cor(chetty$k_rank, chetty$iclevel, use = "complete")
+cor(chetty$k_rank, chetty$par_median, use = "complete")
+cor(chetty$k_rank, chetty$barrons, use = "complete")
+cor(chetty$k_rank, chetty$scorecard_rej_rate_2013, use = "complete")
+cor(chetty$k_rank, chetty$scorecard_median_earnings_2011, use = "complete")
+cor(chetty$k_rank, chetty$sat_avg_2001, use = "complete")
+cor(chetty$k_rank, chetty$exp_instr_pc_2000, use = "complete")
+cor(chetty$k_rank, chetty$ipeds_enrollment_2000, use = "complete")
+cor(chetty$k_rank, chetty$endowment_pc_2000, use = "complete")
+cor(chetty$k_rank, chetty$avgfacsal_2001, use = "complete")
+cor(chetty$k_rank, chetty$region, use = "complete")
+cor(chetty$k_rank, chetty$black_share_fall_2000, use = "complete")
+cor(chetty$k_rank, chetty$par_q1, use = "complete")
+cor(chetty$k_rank, chetty$par_q2, use = "complete")
+cor(chetty$k_rank, chetty$par_q3, use = "complete")
+cor(chetty$k_rank, chetty$par_q4, use = "complete")
+cor(chetty$k_rank, chetty$par_q5, use = "complete")
+```
+
+##Some Regression
+```{r}
+chetty <- chetty %>%
+  mutate(upper_notq5 = 1 - kq5_cond_parq5)
+```
+
+```{r}
+summary(lm(k_rank_cond_parq5 ~ upper_notq5, data = chetty))
+```
+So this model says that if all students who start in the top quintile end up in the top quintile (in other words, if the value of upper_notq5 is 0), their average rank would be .956731. But for each unit increase in the proportion of par_q5 students who "drop" from the top quintile, the average rank of students (from the top quintile) drops by -.524206. That is potentially interesting.
+
+```{r}
+summary(lm(k_rank_cond_parq5 ~ upper_notq5, data = chetty))
+```
+
+```{r}
+summary(lm(k_rank ~ factor(barrons) + par_q5, chetty))
+```
+
+```{r}
+summary(lm(k_rank ~ black_share_fall_2000 + par_q5, chetty))
+```

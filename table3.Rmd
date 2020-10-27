@@ -1,0 +1,301 @@
+---
+title: "table3"
+author: "Chris"
+date: "3/4/2019"
+output: pdf_document
+---
+
+```{r load data and packages, echo = FALSE, warning = FALSE, message = FALSE}
+chettey <- read.csv("mrc_table3.csv")
+library(tidyverse)
+```
+pretty useless.
+number of schools at eaach tier
+```{r number of schools*cohorts by tier}
+tier_plot <- ggplot(chettey, aes(x = tier))
+
+tier_plot+geom_bar()
+```
+#Analyzing Group that didn't attend College
+isolate kids who don't go to college
+```{r no college}
+no_college <- filter(chettey, tier==14)
+```
+number of kids who didn't go to college over time
+```{r ct over time}
+aplot <- ggplot(no_college, aes(x=cohort,y=count))
+aplot+geom_point()+geom_smooth()
+```
+
+add count of kids who didn't go to college from each parental quintile 
+```{r code}
+no_college <- no_college %>%
+  mutate(ct_pq1 = count * par_q1,
+         ct_pq2 = count * par_q2,
+         ct_pq3 = count * par_q3,
+         ct_pq4 = count * par_q4,
+         ct_pq5 = count * par_q5)
+```
+
+parent's economic breakdown of kids who didn't go to college over time period
+```{r economic breakdown of kids who don't go to college}
+sum(no_college$ct_pq1)/sum(no_college$count)
+sum(no_college$ct_pq2)/sum(no_college$count)
+sum(no_college$ct_pq3)/sum(no_college$count)
+sum(no_college$ct_pq4)/sum(no_college$count)
+sum(no_college$ct_pq5)/sum(no_college$count)
+```
+
+add count of kids who end up i
+```{r mutate}
+no_college <- no_college %>%
+  mutate(ct_kq1 = count * k_q1,
+         ct_kq2 = count * k_q2,
+         ct_kq3 = count * k_q3,
+         ct_kq4 = count * k_q4,
+         ct_kq5 = count * k_q5,
+         ct_ktop1pc = count * k_top1pc)
+```
+
+```{r cts of what quintile kids who don't go to college end up at}
+sum(no_college$ct_kq1)/sum(no_college$count)
+sum(no_college$ct_kq2)/sum(no_college$count)
+sum(no_college$ct_kq3)/sum(no_college$count)
+sum(no_college$ct_kq4)/sum(no_college$count)
+sum(no_college$ct_kq5)/sum(no_college$count)
+sum(no_college$ct_ktop1pc)/sum(no_college$count)
+```
+
+#Looking at the the kids
+```{r code}
+chettey2 <- chettey %>%
+  mutate(ct_pq1 = count * par_q1,
+         ct_pq2 = count * par_q2,
+         ct_pq3 = count * par_q3,
+         ct_pq4 = count * par_q4,
+         ct_pq5 = count * par_q5,
+         ct_kq1 = count * k_q1,
+         ct_kq2 = count * k_q2,
+         ct_kq3 = count * k_q3,
+         ct_kq4 = count * k_q4,
+         ct_kq5 = count * k_q5,
+         ct_ktop1pc = count * k_top1pc)
+```
+
+some data sets are missing the count. I'm just removing these from the data
+set for now so I can actually use the data
+```{r filter}
+chettey2 <- filter(chettey2, count>=1)
+```
+
+it's like one off so whatever. close enough
+```{r verify}
+sum(chettey2$count)
+sum(chettey2$ct_kq1)+sum(chettey2$ct_kq2)+sum(chettey2$ct_kq3)+sum(chettey2$ct_kq4)+sum(chettey2$ct_kq5)
+```
+
+```{r locate}
+sum(chettey2$ct_ktop1pc[chettey2$tier==14])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==13])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==12])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==11])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==10])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==9])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==8])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==7])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==6])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==5])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==4])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==3])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==2])/sum(chettey2$ct_ktop1pc)
+sum(chettey2$ct_ktop1pc[chettey2$tier==1])/sum(chettey2$ct_ktop1pc)
+```
+
+```{r plot}
+bplot <- ggplot(chettey2, aes(x=par_q5,
+                              y=k_rank,
+                              color=tier))
+bplot+ geom_point(alpha=0.3)+geom_smooth()
+```
+
+Note geom_col() is how you do a bar with a y value
+
+#Finding the top 1pc
+confirmation we're close
+```{r}
+sum(chettey2$ct_ktop1pc)/sum(chettey2$count)
+```
+
+distribution of top1pc by tier
+```{r}
+ggplot(chettey2, aes(x=tier,
+                     y=ct_ktop1pc))+geom_col()
+```
+kinda interesting. more ppl in the top1pc got no college than went to an ivy. probably because less people attend ivy league schools
+
+distribution of whole population by tier
+```{r}
+ggplot(chettey2, aes(x=tier,
+                     y=count))+geom_col()
+```
+Yeahhh you can see wayyy more people
+
+What quintiles do kids who end up in the top1pc come from?
+
+try finding in one college
+```{r}
+acu <- filter(chettey2, chettey2$name=="Abilene Christian University")
+sum(acu$ct_ktop1pc)
+sum(acu$ktop1pc_cond_parq5 * acu$count * acu$par_q5)+
+sum(acu$ktop1pc_cond_parq4 * acu$count * acu$par_q4)+
+sum(acu$ktop1pc_cond_parq3 * acu$count * acu$par_q3)+
+sum(acu$ktop1pc_cond_parq2 * acu$count * acu$par_q2)+
+sum(acu$ktop1pc_cond_parq1 * acu$count * acu$par_q1)
+sum(acu$ktop1pc_cond_parq5 * acu$count * acu$par_q5)
+sum(acu$ktop1pc_cond_parq4 * acu$count * acu$par_q4)
+sum(acu$ktop1pc_cond_parq3 * acu$count * acu$par_q3)
+sum(acu$ktop1pc_cond_parq2 * acu$count * acu$par_q2)
+sum(acu$ktop1pc_cond_parq1 * acu$count * acu$par_q1)
+```
+
+```{r}
+chettey3 <- chettey2 %>%
+  mutate(ct_ktop1pc_cond_parq1 = ktop1pc_cond_parq1 * count * par_q1,
+         ct_ktop1pc_cond_parq2 = ktop1pc_cond_parq2 * count * par_q2,
+         ct_ktop1pc_cond_parq3 = ktop1pc_cond_parq3 * count * par_q3,
+         ct_ktop1pc_cond_parq4 = ktop1pc_cond_parq4 * count * par_q4,
+         ct_ktop1pc_cond_parq5 = ktop1pc_cond_parq5 * count * par_q5)
+```
+
+
+```{r}
+sum(chettey3$ct_ktop1pc_cond_parq5 , na.rm=TRUE)
+sum(chettey3$ct_ktop1pc_cond_parq4)
+sum(chettey3$ct_ktop1pc_cond_parq3)
+sum(chettey3$ct_ktop1pc_cond_parq2)
+sum(chettey3$ct_ktop1pc_cond_parq1)
+```
+
+
+```{r}
+ggplot(chettey3, aes(tier,ct_ktop1pc_cond_parq5))+geom_col()
+ggplot(chettey3, aes(tier,ct_ktop1pc_cond_parq4))+geom_col()
+ggplot(chettey3, aes(tier,ct_ktop1pc_cond_parq3))+geom_col()
+ggplot(chettey3, aes(tier,ct_ktop1pc_cond_parq2))+geom_col()
+ggplot(chettey3, aes(tier,ct_ktop1pc_cond_parq1))+geom_col()
+```
+
+```{r}
+ggplot(chettey3, aes(x=ct_ktop1pc_cond_parq5))+geom_bar()
+```
+
+```{r}
+chettey3$ktop1pc_cond_parq5[chettey3$tier == 14]
+```
+
+```{r}
+
+tier_counts <- chettey3 %>%
+  filter(cohort==1981) 
+```
+
+```{r}
+tier_gather <- tier_counts %>%
+  select(par_q1, par_q2, tier, ct_ktop1pc_cond_parq1, ct_ktop1pc_cond_parq2)
+```
+
+```{r}
+tier_gather2 <- gather(tier_gather) %>%
+  group_by(tier) %>%
+  summarise(ct_1pc = sum(ct_ktop1pc_cond_parq5,ct_ktop1pc_cond_parq4,
+                         ct_ktop1pc_cond_parq3, ct_ktop1pc_cond_parq2,
+                         ct_ktop1pc_cond_parq1))
+tier_counts
+```
+
+```{r select data}
+chettey4 <- chettey3 %>%
+  select(tier, par_q1:par_q5, type, kq5_cond_parq1,kq5_cond_parq2, kq5_cond_parq3,kq5_cond_parq4,kq5_cond_parq5,count, par_mean , k_q5)
+```
+
+
+```{r}
+chettey4 <- chettey4 %>%
+ mutate(type = ifelse(type %in% 1:3, type,
+               ifelse(tier==13, 4,
+               5)))
+```
+
+```{r}
+chettey5 <- chettey4 %>%
+  group_by(type) %>%
+  summarize(mean_par_mean = mean(par_mean,na.rm=TRUE),
+            mean_k_q5= mean(k_q5, na.rm=TRUE),
+            totalcount=sum(count, na.rm = TRUE))
+```
+
+
+```{r}
+chettey6 <- chettey4 %>%
+  mutate(ct_kq5_cond_parq1 = count * kq5_cond_parq1,
+         ct_kq5_cond_parq2 = count * kq5_cond_parq2,
+         ct_kq5_cond_parq3 = count * kq5_cond_parq3,
+         ct_kq5_cond_parq4 = count * kq5_cond_parq4,
+         ct_kq5_cond_parq5 = count * kq5_cond_parq5) %>%
+  group_by(type) %>%
+  summarize(pq1= sum(ct_kq5_cond_parq1, na.rm=TRUE),
+            pq2= sum(ct_kq5_cond_parq2, na.rm=TRUE),
+            pq3= sum(ct_kq5_cond_parq3, na.rm=TRUE),
+            pq4= sum(ct_kq5_cond_parq4, na.rm=TRUE),
+            pq5= sum(ct_kq5_cond_parq5, na.rm=TRUE))
+```
+
+
+```{r}
+chettey7 <- chettey6 %>%
+  gather(par_quintile, count, pq1:pq5)
+```
+
+Who makes up the top quintile? Where did they go to school?
+```{r}
+ggplot(chettey7, aes(par_quintile, count, fill=type))+geom_col()
+```
+
+#Let's look at the top quintile
+```{r}
+chettey8 <- chettey4 %>%
+  group_by(type) %>%
+  summarize(sum_q5 = sum(count*par_q5, na.rm=TRUE),
+            sum_k_5 = sum(count*par_q5*kq5_cond_parq5, na.rm=TRUE))
+
+```
+
+How likely is it for someone in the top quintile to remain there given the college they attend
+```{r}
+for(i in 1:5){
+  print(chettey8[i,3]/chettey8[i,2])
+}
+```
+
+distribution of the top quintile. then distribution of the top quintile who return to the top quintile. Ideally I'd want these side by side as a double bar graph
+```{r}
+ggplot(chettey8, aes(type,sum_q5))+geom_col()
+ggplot(chettey8, aes(type,sum_k_5))+geom_col()
+```
+
+
+
+```{r}
+ggplot(chettey7, aes(type, count, fill=par_quintile))+geom_col()+
+  labs(title = "Types and parent quintile distribution of kids who end up in top quintile")
+```
+
+
+What these results are telling me is not surprising- both where you get your college and what quintile you were born into play a role in where you end up in the income quintile. 
+
+#Over time
+
+```{r}
+å
+```
+

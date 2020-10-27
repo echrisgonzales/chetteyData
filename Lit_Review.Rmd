@@ -1,0 +1,37 @@
+---
+title: "Lit Review"
+author: "Chris Gonzales"
+date: "3/20/2019"
+output: pdf_document
+---
+
+Topics
+My interest is in social reproduction. I want to make an argument for downward mobility. I want my research to be centered on the advantages kids from the top quintile receive. And how the academic system benefits students who have access to resources. Fuck I’m literally cycling back to my paper from last semester. I think that’s okay. Probably should stop writing in stream of consciousness but whatever. 
+
+Let’s start thinking of some terms we could put in the daisy
+
+Higher Education
+Parenting
+Income
+Child outcomes
+Social capital
+Community
+
+
+Research Questions: How is our current higher education system conducive to the social reproduction of the elite? Is this a problem? If so, what could be done?
+
+Topics
+-Parent’s Income Has a strong impact on child’s outcome mediated by schooling (especially higher education)
+
+-Concerted Cultivation (is it a problem?)
+
+-Less skilled people from higher income quintiles (stickiness of the top/bottom)
+
+-Why Wealth could be even more important (albeit harder to get data on with a trickier distribution)
+
+The unequal impact the rich have on the opinions and policies of our country.
+
+
+Potential Helps
+-Socioeconomic based affirmative action
+

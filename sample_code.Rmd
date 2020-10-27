@@ -1,0 +1,182 @@
+---
+title: "Significance_Tests"
+author: "Chris Gonzales"
+date: "4/11/2019"
+output: pdf_document
+---
+
+```{r load data and packages, echo = FALSE, warning = FALSE, message = FALSE}
+chettey <- read.csv("mrc_table3.csv")
+library(tidyverse)
+```
+
+
+Add counts to the data
+```{r}
+chettey2 <- chettey %>%
+  mutate(ct_kq5_cond_parq1 = count * kq5_cond_parq1,
+         ct_kq5_cond_parq2 = count * kq5_cond_parq2,
+         ct_kq5_cond_parq3 = count * kq5_cond_parq3,
+         ct_kq5_cond_parq4 = count * kq5_cond_parq4,
+         ct_kq5_cond_parq5 = count * kq5_cond_parq5,
+         
+         ct_kq4_cond_parq1 = count * kq4_cond_parq1,
+         ct_kq4_cond_parq2 = count * kq4_cond_parq2,
+         ct_kq4_cond_parq3 = count * kq4_cond_parq3,
+         ct_kq4_cond_parq4 = count * kq4_cond_parq4,
+         ct_kq4_cond_parq5 = count * kq4_cond_parq5,
+         
+         ct_kq3_cond_parq1 = count * kq3_cond_parq1,
+         ct_kq3_cond_parq2 = count * kq3_cond_parq2,
+         ct_kq3_cond_parq3 = count * kq3_cond_parq3,
+         ct_kq3_cond_parq4 = count * kq3_cond_parq4,
+         ct_kq3_cond_parq5 = count * kq3_cond_parq5,
+         
+         ct_kq2_cond_parq1 = count * kq2_cond_parq1,
+         ct_kq2_cond_parq2 = count * kq2_cond_parq2,
+         ct_kq2_cond_parq3 = count * kq2_cond_parq3,
+         ct_kq2_cond_parq4 = count * kq2_cond_parq4,
+         ct_kq2_cond_parq5 = count * kq2_cond_parq5,
+         
+         ct_kq1_cond_parq1 = count * kq1_cond_parq1,
+         ct_kq1_cond_parq2 = count * kq1_cond_parq2,
+         ct_kq1_cond_parq3 = count * kq1_cond_parq3,
+         ct_kq1_cond_parq4 = count * kq1_cond_parq4,
+         ct_kq1_cond_parq5 = count * kq1_cond_parq5)
+```
+
+```{r}
+upper_inq5 <- sum(chettey2$ct_kq5_cond_parq5, na.rm = TRUE)
+upper_notq5 <- sum(chettey2$ct_kq1_cond_parq5 + chettey2$ct_kq2_cond_parq5 + chettey2$ct_kq3_cond_parq5+ chettey2$ct_kq4_cond_parq5, na.rm = TRUE)
+
+upper_prop <- upper_inq5 / (upper_inq5+upper_notq5)
+
+lower_inq5 <- sum(chettey2$ct_kq5_cond_parq1, na.rm = TRUE)
+lower_notq5 <- sum(chettey2$ct_kq1_cond_parq1 + chettey2$ct_kq2_cond_parq1 + chettey2$ct_kq3_cond_parq1+ chettey2$ct_kq4_cond_parq1, na.rm = TRUE)
+```
+
+```{r}
+lower <- c(lower_inq5, lower_notq5)
+upper <- c(upper_inq5, upper_notq5)
+table <- rbind(lower, upper)
+prop.test(table)
+```
+
+
+
+Drop levels to make the data set more manageable
+```{r}
+chet <- chettey2 %>%
+  filter(cohort == 1981 ) %>%
+  droplevels()
+```
+
+
+
+##Creating potential groups of interest
+
+```{r}
+downward <- chet %>%
+  filter(kq1_cond_parq5 > kq5_cond_parq5)
+```
+
+More than 30% of student body comes from bottom income quintile
+```{r}
+down2 <- chet %>%
+  filter(par_q1 > .3)
+```
+
+```{r}
+downward3 <- chet %>%
+  filter(kq1_cond_parq5 + kq2_cond_parq5 + kq3_cond_parq5 > kq4_cond_parq5 + kq5_cond_parq5)
+```
+
+
+```{r}
+mean(downward3$k_rank)
+mean(chet$k_rank, na.rm = TRUE)
+```
+
+relative risk aversion
+
+
+
+I wanna tell a story about how schools that allow a high percentage of their student body is made up of students from the top quintile it creates an environment that perpetuates the top school
+
+Compare list of colleges with high percentage of parents from top quintile vs those that send a high percentage to the upper class
+
+```{r}
+high_incoming_student_top_quintile_schools <- chet %>%
+  filter(par_q5 > .5)
+
+high_outgoing_student_top_quintile_schools <- chet %>%
+  filter(k_q5 > .5)
+
+A <- high_incoming_student_top_quintile_schools$name
+B <- high_outgoing_student_top_quintile_schools$name
+
+in_and_out <- intersect(A, B)
+
+in_not_out <- setdiff(A, B)
+
+out_not_in <- setdiff(B,A)
+
+out_n_in <- chet %>%
+  filter(name %in% out_not_in)
+
+in_n_out <- chet %>%
+  filter(name %in% in_not_out)
+
+in_a_out <- chet %>%
+  filter(name %in% in_and_out) 
+
+in_ <- chet %>%
+  filter(name %in% A) %>%
+  filter(k_q1 > .2)
+
+```
+
+```{r}
+summary(chet$par_q5)
+summary(chet$k_q5)
+
+
+mean(chet$par_q5 , na.rm = TRUE)
+median(chet$par_q5 , na.rm = TRUE)
+mean(chet$k_q5 , na.rm =  TRUE)
+median(chet$k_q5 , na.rm = TRUE)
+```
+
+
+
+
+I need to change to categorical with gather!
+
+Then regress k_rank, kq5_cond_parq5, and kq(3 or lower)_cond_parq5
+on categorical income. It would look something like:
+summary(lm(k_rank ~ par_quintile))
+
+Next Story to investigate
+Access rate vs success rate
+Potential Graphs to show
+plot graph of access rate vs success rate 
+  addmitance rate vs k_rank
+  ***admittance rate isn't in this data set
+
+plot graph of median parent income vs success rate
+  par_median vs k_rank
+
+
+
+Graphs I could want
+
+line graph of percentage in kq5 (colored by pq level) to see the change over time
+  -this might not be that exciting but I believe it would show
+  the unequal distribution of people from the top income is not a new trend
+  
+
+I know about the GSS if I find myself looking for new variables to explain something.
+
+
+
+

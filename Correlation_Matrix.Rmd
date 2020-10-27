@@ -1,0 +1,86 @@
+---
+title: "Correlation Matrix"
+author: "Chris Gonzales"
+date: "5/20/2019"
+output: pdf_document
+---
+
+```{r, warning = FALSE, header = FALSE, message = FALSE}
+chettey <- read.csv("mrc_table3.csv")
+library(tidyverse)
+library(pander)
+library(stargazer)
+```
+
+Drop Levels
+```{r}
+chet <- chettey %>%
+  filter(cohort == 1981 ) %>%
+  droplevels()
+```
+
+Add counts
+```{r}
+chet <- chet %>%
+  mutate(ct_kq5_cond_parq1 = count * kq5_cond_parq1 * par_q1,
+         ct_kq5_cond_parq2 = count * kq5_cond_parq2 * par_q2,
+         ct_kq5_cond_parq3 = count * kq5_cond_parq3 * par_q3,
+         ct_kq5_cond_parq4 = count * kq5_cond_parq4 * par_q4,
+         ct_kq5_cond_parq5 = count * kq5_cond_parq5 * par_q5,
+         
+         ct_kq4_cond_parq1 = count * kq4_cond_parq1 * par_q1,
+         ct_kq4_cond_parq2 = count * kq4_cond_parq2 * par_q2,
+         ct_kq4_cond_parq3 = count * kq4_cond_parq3 * par_q3,
+         ct_kq4_cond_parq4 = count * kq4_cond_parq4 * par_q4,
+         ct_kq4_cond_parq5 = count * kq4_cond_parq5 * par_q5,
+         
+         ct_kq3_cond_parq1 = count * kq3_cond_parq1 * par_q1,
+         ct_kq3_cond_parq2 = count * kq3_cond_parq2 * par_q2,
+         ct_kq3_cond_parq3 = count * kq3_cond_parq3 * par_q3,
+         ct_kq3_cond_parq4 = count * kq3_cond_parq4 * par_q4,
+         ct_kq3_cond_parq5 = count * kq3_cond_parq5 * par_q5,
+         
+         ct_kq2_cond_parq1 = count * kq2_cond_parq1 * par_q1,
+         ct_kq2_cond_parq2 = count * kq2_cond_parq2 * par_q2,
+         ct_kq2_cond_parq3 = count * kq2_cond_parq3 * par_q3,
+         ct_kq2_cond_parq4 = count * kq2_cond_parq4 * par_q4,
+         ct_kq2_cond_parq5 = count * kq2_cond_parq5 * par_q5,
+         
+         ct_kq1_cond_parq1 = count * kq1_cond_parq1 * par_q1,
+         ct_kq1_cond_parq2 = count * kq1_cond_parq2 * par_q2,
+         ct_kq1_cond_parq3 = count * kq1_cond_parq3 * par_q3,
+         ct_kq1_cond_parq4 = count * kq1_cond_parq4 * par_q4,
+         ct_kq1_cond_parq5 = count * kq1_cond_parq5 * par_q5)
+```
+
+
+```{r}
+characteristics <- read.csv("https://opportunityinsights.org/wp-content/uploads/2018/04/mrc_table10.csv")
+```
+
+```{r}
+characteristics <- select(characteristics, -c(name, region, state, type, tier,
+                                              tier_name, iclevel, fips, cz, czname,
+                                              cfips, county, multi))
+```
+
+```{r}
+chetty <- left_join(chet, characteristics, by = "super_opeid")
+```
+
+```{r, echo=FALSE}
+select_chetty <- chetty %>%
+  select(k_rank, par_q5, par_median, scorecard_rej_rate_2013,
+         scorecard_netprice_2013, scorecard_median_earnings_2011, sat_avg_2001, sticker_price_2000,
+         exp_instr_2000, ipeds_enrollment_2000, avgfacsal_2001, black_share_fall_2000, grad_rate_150_p_2002)
+```
+
+##Formatting Correlation Matrix
+-Can I replace the variable names with something more descriptive to make them easier to read?
+-Also should I put something above the k_rank, par_q5?
+  -If so how would I go about that?
+
+```{r, echo=FALSE}
+matrix <- round(cor(select_chetty[ , 1:13], use = "complete.obs"),3) 
+pander(matrix[1:2, 2:13])
+```

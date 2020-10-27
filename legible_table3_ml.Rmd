@@ -1,0 +1,161 @@
+---
+title: "Legible_table3"
+author: "Chris"
+date: "3/12/2019"
+output: pdf_document
+---
+
+
+```{r load data and packages, echo = FALSE, warning = FALSE, message = FALSE}
+chettey <- read.csv("https://opportunityinsights.org/wp-content/uploads/2018/04/mrc_table3.csv")
+library(tidyverse)
+```
+
+Note: I would suggest filtering to the three oldest cohorts, for two reasons. First, those are the three cohorts across which Chetty et al average for their baseline numbers. Second, those oldest cohorts are more likely to have reached their stabilized income ranks in the later years.
+
+```{r filter to oldest cohorts}
+chettey <- filter(chettey, cohort<=1982)
+```
+
+Note: Keeping `tier_name` as well could save you some time later. And you might want `iclevel` too (see next note).
+
+```{r select data}
+chettey2 <- chettey %>%
+  select(tier, par_q1:par_q5, type, kq5_cond_parq1,kq5_cond_parq2, kq5_cond_parq3,kq5_cond_parq4,kq5_cond_parq5,count, tier_name, iclevel)
+```
+
+***Is there a better way to group these? 
+
+Note: Ok, so type 13 = Insufficient Data, and type 14 = Not in college. Do you really need the insufficient data observations? Should they just be NAs? 
+
+More importantly, do you want to do this by type (public, private, non-profit) or by iclevel (institutional control = four-year, two-year, less than two-year)? The issue with type is that there are 4-year, 2-year and less than 2-year institutions that are public, private, and for-profit. You could make nine categories across all those comparisons. Or for now you could just stick with iclevel. But I think type alone could get messy.
+
+Your group_by code works. The one thing that might make it more efficient is if you make the categories that are not changing become the dangling else. I'm updating it here with that change and to switch to iclevel, but the same thing would work with type.
+
+```{r}
+chettey2 <- chettey2 %>%
+ mutate(iclevel = ifelse(tier == 14, 4,
+                         ifelse(tier == 13, 5, iclevel)))
+```
+
+Note: Plots would be cleaner if you make iclevel a factor variable
+
+```{r}
+chettey2 <- chettey2 %>%
+     mutate(iclevel = factor(iclevel,
+                             levels = c(1, 2, 3, 4, 5),
+                             labels = c("Four-year", "Two-year", "Less than Two-year",
+                                        "Not in college", "College with insufficient data")))
+```
+
+Table with rows associated with college-type and columns associated with parent quintile. The numbers in each represent the number of kids who make it to the top quintile from associated collge-type.
+
+Note: So the kq5_cond_parq1 variable is the proportion of students from the bottom quintile who make it to the top quintile. For Middlebury, that's about .55. What you want is the proportion of *all* of Middlebury's students who start from the bottom and make it to the top. That's only about .013. For mobility from the bottom to the top, you can use mr_kq5_pq1. But that doesn't exist for the other parent quintiles. Instead, just multiply each of your counts by the proportion of students from each parent quintile to get the count who make that move.
+
+```{r}
+chettey3 <- chettey2 %>%
+  mutate(ct_kq5_cond_parq1 = count * kq5_cond_parq1 * par_q1,
+         ct_kq5_cond_parq2 = count * kq5_cond_parq2 * par_q2,
+         ct_kq5_cond_parq3 = count * kq5_cond_parq3 * par_q3,
+         ct_kq5_cond_parq4 = count * kq5_cond_parq4 * par_q4, 
+         ct_kq5_cond_parq5 = count * kq5_cond_parq5 * par_q5) %>%
+  group_by(iclevel) %>% #changing this to iclevel
+  summarize(pq1= sum(ct_kq5_cond_parq1, na.rm=TRUE),
+            pq2= sum(ct_kq5_cond_parq2, na.rm=TRUE),
+            pq3= sum(ct_kq5_cond_parq3, na.rm=TRUE),
+            pq4= sum(ct_kq5_cond_parq4, na.rm=TRUE),
+            pq5= sum(ct_kq5_cond_parq5, na.rm=TRUE))
+chettey3
+```
+
+Gather the data
+
+Note: Nice!
+
+```{r}
+chettey3 <- chettey3 %>%
+  gather(par_quintile, count, pq1:pq5)
+```
+
+Plot it
+
+Note: Looks like there are very few people at less than two-year institutions who make it to the top quintile. Is that why that factor level doesn't show up in the columns? If so, maybe collapse them into the two-years or the colleges with insufficient data.
+
+```{r}
+ggplot(chettey3, aes(par_quintile, count, fill=iclevel))+geom_col()+ # changed type to iclevel
+  labs(title= "Distribution of Students Who End Up in Top Quintile",
+       x = "Parent's Quintile", y="Count in Top Quintile") +
+     scale_y_continuous(labels = scales::comma) # For actual numbers
+```
+
+Same data but packaged a little differently
+```{r}
+ggplot(chettey3, aes(iclevel, count, fill=par_quintile))+geom_col()+ # changed type to iclevel
+   labs(title= "Distribution of Kids Who End Up in Top Quintile",
+       x = "Institutional Control Level", y="Count in Top Quintile") + # changed x label
+     scale_y_continuous(labels = scales::comma) # For actual numbers
+```
+
+```{r}
+chettey4 <- chettey2 %>%
+  group_by(iclevel) %>%
+  mutate(unequal = ifelse(par_q5+par_q4 > par_q1+par_q2+par_q3, 1 , 0)) %>%
+  summarize(uneq = sum(unequal, na.rm = TRUE))
+chettey4
+
+ggplot(chettey4, aes(iclevel, uneq))+geom_col()
+```
+
+what do i want to find?
+- why do kids from the top quintile get higher test scores?
+    location? concerted cultivation? better schools?
+
+
+Very few 2 year colleges (and lower) who have more people from the top 2 quintiles than the bottom 3. 
+
+
+Potential Research Question: 
+How is our current higher education system conducive to the social reproduction of the elite? Is this a problem? If so, what could be done?
+
+Potential Key Words:
+Higher Education
+Admissions
+Parenting (Concerted Cultivation)
+Income
+Child outcomes
+Social capital
+
+Potential Project Sources
+
+The Future of College Access: The Declining Role of Public Higher Education in Promoting Equal Opportunity
+https://journals.sagepub.com/doi/abs/10.1177/0002716202238569
+
+
+Dream Hoarders (might need to find a different version since this is just chapter 1. Maybe ask Matt about where to look)
+https://www.brookings.edu/wp-content/uploads/2016/05/chapter-one_-dream-hoarders.pdf
+
+
+Privilege and domination: The role of the upper class in American higher education
+https://journals.sagepub.com/doi/abs/10.1177/053901847501400607
+
+
+Concerted Cultivation? Parenting Values, Education and Class Diversity
+https://journals.sagepub.com/doi/abs/10.1177/0038038511399618
+
+
+Does Parenting Style Matter? Concerted Cultivation, Educational Expectations, and the Transmission of Educational Advantage
+https://journals.sagepub.com/doi/full/10.1177/0731121414562967
+
+
+Socioeconomic Inequality In Education
+http://go.galegroup.com/ps/retrieve.do?tabID=T003&resultListType=RESULT_LIST&searchResultsType=SingleTab&searchType=BasicSearchForm&currentPosition=3&docId=GALE%7CCX3273000122&docType=Topic+overview&sort=RELEVANCE&contentSegment=&prodId=GVRL&contentSet=GALE%7CCX3273000122&searchId=R2&userGroupName=vol_m58c&inPS=true
+
+Inequality of Opportunity in Comparative Perspective: Recent Research on Educational Attainment and SocialMobility
+https://www.annualreviews.org/doi/abs/10.1146/annurev.soc.31.041304.122232
+
+
+
+
+
+
+

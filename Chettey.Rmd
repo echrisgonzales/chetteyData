@@ -1,0 +1,101 @@
+---
+title: "Chettey"
+author: "Chris"
+date: "2/26/2019"
+output: pdf_document
+---
+"Longitudinal Statistics on Children’s Income Distributions by College Tier, Parent Income Ventile, and Cohort"
+name of Chettey study i pulled the data from
+```{r load packages and data, echo = FALSE, warning = FALSE, message = FALSE}
+library(tidyverse)
+# The data file must be in your working directory for this next line to work
+cdata <- read.csv("mrc_table8.csv")
+```
+
+```{r tier vs mean kids rids earning rank }
+zdata <- filter(cdata, par_ventile <= 21)
+a <- ggplot(cdata, aes(x=tier,
+                       y=k_rank))
+a+geom_point()+geom_smooth()
+```
+
+```{r isolate top 2pcters who attended top tier college}
+b <- filter(cdata, par_ventile ==20, tier==1)
+```
+
+```{r top 2pct who attended top tier university}
+bplot<- ggplot(b,aes(x=cohort,
+                     y=k_rank))
+bplot+geom_point()+geom_smooth()
+```
+
+```{r krank by cohort for top2pct}
+bplot <- ggplot(b, aes(x=cohort,
+                       y=k_rank))
+bplot+geom_line()+facet_wrap(~tier)
+```
+
+```{r krank by cohort}
+aplot <- ggplot(zdata, aes(x=cohort,
+                           y=k_rank,
+                           color=tier))
+aplot+geom_point()+facet_wrap(~quintile)
+```
+
+```{r }
+aplot<- ggplot(zdata, aes(x=par_ventile,
+                          y=k_q5))
+```
+
+```{r plot}
+aplot+geom_point()+geom_smooth()
+```
+
+```{r add quintile}
+zdata <- zdata %>%
+  mutate(quintile = ifelse(par_ventile %in% 1:4, 1,
+                    ifelse(par_ventile %in% 5:8, 2,
+                    ifelse(par_ventile %in% 9:12, 3,
+                    ifelse(par_ventile %in% 13:16, 4,
+                    5)))))
+  
+```
+
+```{r table}
+table(zdata$quintile,zdata$tier)
+```
+
+```{r show plot}
+cplot <- ggplot(zdata, aes(x=quintile,
+                           y=k_nowork))
+cplot+geom_point()
+```
+
+
+```{r group by and summarize means}
+krank_tier <- zdata %>% 
+     group_by(tier, quintile) %>% # We want info about each level of this variable
+     summarize(mean_k_rank = mean(k_rank)) # The info we want
+
+krank_tier
+```
+
+```{r}
+chetty_plot <- ggplot(krank_tier, aes(x = quintile, y = mean_k_rank,
+                                      color = factor(tier)))
+chetty_plot + geom_point() + geom_line()
+```
+
+
+
+
+
+what am i curious about?
+-dot plot of y= k_rank by x=cohort
+
+#New Data
+```{r load data}
+census <- read.csv("national_percentile_outcomes.csv")
+```
+
+

@@ -1,0 +1,155 @@
+---
+title: "Legible_table3"
+author: "Chris"
+date: "3/12/2019"
+output: pdf_document
+---
+
+```{r load data and packages, echo = FALSE, warning = FALSE, message = FALSE}
+chettey <- read.csv("mrc_table3.csv")
+library(tidyverse)
+```
+
+```{r select data}
+chettey2 <- chettey %>%
+  select(tier, par_q1:par_q5, type, kq5_cond_parq1,kq5_cond_parq2, kq5_cond_parq3,kq5_cond_parq4,kq5_cond_parq5,count)
+```
+
+Give collges with insufficient data and no-college types.
+***Is there a better way to group these? 
+```{r}
+chettey2 <- chettey2 %>%
+ mutate(type = ifelse(type %in% 1:3, type,
+               ifelse(tier==13, 4,
+               5)))
+```
+
+Table with rows associated with college-type and columns associated with parent quintile. The numbers in each represent the number of kids who make it to the top quintile from associated collge-type and 
+```{r}
+chettey3 <- chettey2 %>%
+  mutate(ct_kq5_cond_parq1 = count * kq5_cond_parq1,
+         ct_kq5_cond_parq2 = count * kq5_cond_parq2,
+         ct_kq5_cond_parq3 = count * kq5_cond_parq3,
+         ct_kq5_cond_parq4 = count * kq5_cond_parq4,
+         ct_kq5_cond_parq5 = count * kq5_cond_parq5) %>%
+  group_by(type) %>%
+  summarize(pq1= sum(ct_kq5_cond_parq1, na.rm=TRUE),
+            pq2= sum(ct_kq5_cond_parq2, na.rm=TRUE),
+            pq3= sum(ct_kq5_cond_parq3, na.rm=TRUE),
+            pq4= sum(ct_kq5_cond_parq4, na.rm=TRUE),
+            pq5= sum(ct_kq5_cond_parq5, na.rm=TRUE))
+chettey3
+```
+
+```{r}
+middlebury <- chettey %>%
+  filter(name == "Middlebury College", cohort == 1991)
+
+middlebury$par_top1pc
+```
+
+
+Gather the data
+```{r}
+chettey3 <- chettey3 %>%
+  gather(par_quintile, count, pq1:pq5)
+```
+
+Plot it
+```{r}
+ggplot(chettey3, aes(par_quintile, count, fill=type))+geom_col()+
+  labs(title= "Distribution of Kids Who End Up in Top Quintile",
+       x = "Parent's Quintile", y="Count in Top Quintile")
+```
+
+Same data but packaged a little differently
+```{r}
+ggplot(chettey3, aes(type, count, fill=par_quintile))+geom_col()+
+   labs(title= "Distribution of Kids Who End Up in Top Quintile",
+       x = "Parent's Quintile", y="Count in Top Quintile")
+```
+
+#Where does kids from top quintile end up?
+```{r}
+chettey4 <- chettey %>%
+  select(tier, par_q1:par_q5, type, kq4_cond_parq5,kq3_cond_parq5,kq2_cond_parq5,kq1_cond_parq5,kq5_cond_parq5,count) %>%
+  mutate(type = ifelse(type %in% 1:3, type,
+               ifelse(tier==13, 4,
+               5))) %>%
+  mutate(ct_kq1_cond_parq5 = count * kq1_cond_parq5,
+         ct_kq2_cond_parq5 = count * kq2_cond_parq5,
+         ct_kq3_cond_parq5 = count * kq3_cond_parq5,
+         ct_kq4_cond_parq5 = count * kq4_cond_parq5,
+         ct_kq5_cond_parq5 = count * kq5_cond_parq5) %>%
+  group_by(type) %>%
+  summarize(kq1= sum(ct_kq1_cond_parq5, na.rm=TRUE),
+            kq2= sum(ct_kq2_cond_parq5, na.rm=TRUE),
+            kq3= sum(ct_kq3_cond_parq5, na.rm=TRUE),
+            kq4= sum(ct_kq4_cond_parq5, na.rm=TRUE),
+            kq5= sum(ct_kq5_cond_parq5, na.rm=TRUE))
+pander(chettey4)
+```
+
+Gather the data
+```{r}
+chettey4 <- chettey4 %>%
+  gather(k_quintile, count, kq1:kq5)
+```
+
+Plot it
+```{r}
+ggplot(chettey4, aes(type,count,fill=k_quintile))+geom_col()
+```
+
+```{r}
+ggplot(chettey4, aes(k_quintile,count,fill=type))+geom_col()
+```
+
+Potential Research Question: 
+How is our current higher education system conducive to the social reproduction of the elite? Is this a problem? If so, what could be done?
+
+Potential Key Words:
+Higher Education
+Admissions
+Parenting (Concerted Cultivation)
+Income
+Child outcomes
+Social capital
+
+Potential Project Sources
+
+The Future of College Access: The Declining Role of Public Higher Education in Promoting Equal Opportunity
+https://journals.sagepub.com/doi/abs/10.1177/0002716202238569
+
+
+Dream Hoarders (might need to find a different version since this is just chapter 1. Maybe ask Matt about where to look)
+https://www.brookings.edu/wp-content/uploads/2016/05/chapter-one_-dream-hoarders.pdf
+
+
+Privilege and domination: The role of the upper class in American higher education
+https://journals.sagepub.com/doi/abs/10.1177/053901847501400607
+
+
+Concerted Cultivation? Parenting Values, Education and Class Diversity
+https://journals.sagepub.com/doi/abs/10.1177/0038038511399618
+
+
+Does Parenting Style Matter? Concerted Cultivation, Educational Expectations, and the Transmission of Educational Advantage
+https://journals.sagepub.com/doi/full/10.1177/0731121414562967
+
+
+Socioeconomic Inequality In Education
+http://go.galegroup.com/ps/retrieve.do?tabID=T003&resultListType=RESULT_LIST&searchResultsType=SingleTab&searchType=BasicSearchForm&currentPosition=3&docId=GALE%7CCX3273000122&docType=Topic+overview&sort=RELEVANCE&contentSegment=&prodId=GVRL&contentSet=GALE%7CCX3273000122&searchId=R2&userGroupName=vol_m58c&inPS=true
+
+Inequality of Opportunity in Comparative Perspective: Recent Research on Educational Attainment and SocialMobility
+https://www.annualreviews.org/doi/abs/10.1146/annurev.soc.31.041304.122232
+
+Chettey
+https://www.nytimes.com/interactive/2017/01/18/upshot/some-colleges-have-more-students-from-the-top-1-percent-than-the-bottom-60.html?action=click&contentCollection=Opinion&module=Trending&version=Full&region=Marginalia&pgtype=article
+
+
+
+
+
+
+
